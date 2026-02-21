@@ -644,72 +644,191 @@
     </div>
 
         <style>
-        .melke-footer {
-            background-color: #2c2c2e;
-            color: #f2f2f2;
-            padding: 40px 0;
-            font-family: Arial, sans-serif;
-        }
-        .melke-footer .inner-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .melke-footer__brand {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .melke-footer__columns {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        .melke-footer__column-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .melke-footer__list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .melke-footer__list li {
-            margin-bottom: 5px;
-        }
-        .melke-footer__contact {
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
-    <footer class="melke-footer">
-        <div class="inner-container">
-            <div class="melke-footer__brand">Melke — лучшие окна в СПб</div>
-            <div class="melke-footer__columns">
-                <div class="melke-footer__column">
-                    <div class="melke-footer__column-title">Окна</div>
-                    <ul class="melke-footer__list">
-                        <li>Lite 60</li>
-                        <li>Lite 70</li>
-                        <li>Smart</li>
-                        <li>Evolution</li>
-                        <li>Wide</li>
-                        <li>Centum</li>
-                    </ul>
-                </div>
-                <div class="melke-footer__column">
-                    <div class="melke-footer__column-title">Контакты</div>
-                    <div class="melke-footer__contact">
-                        <div>+7 931 357 47 07</div>
-                        <div>10:00 – 18:00</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    .melke-footer {
+        background: radial-gradient(circle at top left, #1f2537 0%, #141a2a 62%);
+        color: #f6f7fb;
+        padding: 72px 0 40px;
+    }
 
-    <script src="./assets/main-CllxS18W.js"></script>
+    .melke-footer__container {
+        display: grid;
+        grid-template-columns: minmax(220px, 1.3fr) repeat(3, minmax(180px, 1fr));
+        gap: 28px 48px;
+        align-items: start;
+    }
+
+    .melke-footer__logo {
+        display: inline-block;
+        margin-bottom: 24px;
+    }
+
+    .melke-footer__logo img {
+        width: min(220px, 100%);
+        height: auto;
+        display: block;
+    }
+
+    .melke-footer__tagline {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.45;
+        color: #d1d6e6;
+        max-width: 260px;
+    }
+
+    .melke-footer__title {
+        margin: 0 0 18px;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.2;
+        color: #ffffff;
+    }
+
+    .melke-footer__list,
+    .melke-footer__details {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+    }
+
+    .melke-footer__item {
+        position: relative;
+        padding-left: 20px;
+        line-height: 1.45;
+        color: #d8ddef;
+        font-size: 16px;
+    }
+
+    .melke-footer__item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.62em;
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid #ea3ca6;
+        border-bottom: 2px solid #ea3ca6;
+        transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .melke-footer__details li {
+        line-height: 1.6;
+        color: #d8ddef;
+        font-size: 16px;
+    }
+
+    .melke-footer__details li strong {
+        color: #fff;
+    }
+
+    .melke-footer__schedule,
+    .melke-footer__phone,
+    .melke-footer__mail {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .melke-footer__schedule::before,
+    .melke-footer__phone::before,
+    .melke-footer__mail::before {
+        color: #ea3ca6;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .melke-footer__schedule::before { content: '◷'; }
+    .melke-footer__phone::before { content: '✆'; }
+    .melke-footer__mail::before { content: '✉'; }
+
+    .melke-footer__bottom {
+        margin-top: 34px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        color: #b8bfd4;
+        font-size: 14px;
+    }
+
+    @media (max-width: 1150px) {
+        .melke-footer {
+            padding-top: 58px;
+        }
+
+        .melke-footer__container {
+            grid-template-columns: repeat(2, minmax(240px, 1fr));
+            gap: 28px 32px;
+        }
+    }
+
+    @media (max-width: 760px) {
+        .melke-footer {
+            padding: 48px 0 34px;
+        }
+
+        .melke-footer__container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .melke-footer__title {
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+
+        .melke-footer__item,
+        .melke-footer__details li {
+            font-size: 15px;
+        }
+
+        .melke-footer__tagline {
+            max-width: none;
+        }
+    }
+</style>
+<footer class="melke-footer">
+    <div class="inner-container melke-footer__container">
+        <div class="melke-footer__brand">
+            <a class="melke-footer__logo" href="#" aria-label="Melke">
+                <img src="./assets/melke-logo-hor-wite-SGI2bZZu.webp" alt="Melke">
+            </a>
+            <p class="melke-footer__tagline">Melke — лучшие окна в Санкт-Петербурге</p>
+        </div>
+
+        <div class="melke-footer__column">
+            <h3 class="melke-footer__title">Окна</h3>
+            <ul class="melke-footer__list">
+                <li class="melke-footer__item">Lite 70</li>
+                <li class="melke-footer__item">Lite 60</li>
+                <li class="melke-footer__item">Evolution</li>
+                <li class="melke-footer__item">Smart</li>
+                <li class="melke-footer__item">Centum</li>
+                <li class="melke-footer__item">Wide</li>
+            </ul>
+        </div>
+
+        <div class="melke-footer__column">
+            <h3 class="melke-footer__title">Контакты</h3>
+            <ul class="melke-footer__details">
+                <li>Адрес: Ленобласть, Всеволожский район, г. Кудрово, Европейский проспект, 22</li>
+                <li class="melke-footer__phone">+7 (981) 903-01-81</li>
+                <li class="melke-footer__mail">okna-melke.spb@yandex.ru</li>
+            </ul>
+        </div>
+
+        <div class="melke-footer__column">
+            <h3 class="melke-footer__title">Мы работаем</h3>
+            <ul class="melke-footer__details">
+                <li class="melke-footer__schedule">10:00 — 19:00, ежедневно</li>
+                <li><strong>Реквизиты:</strong> ИП СМИРНОВ АЛЕКСАНДР КОНСТАНТИНОВИЧ</li>
+                <li>ИНН 471403172566 • ОГРНИП 324470400084167</li>
+            </ul>
+        </div>
+    </div>
+    <div class="inner-container melke-footer__bottom">© Melke, 2026. Все права защищены.</div>
+</footer>
+
+<script src="./assets/main-CllxS18W.js"></script>
 </body>
 </html>
