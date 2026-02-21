@@ -1,0 +1,84 @@
+*** Begin Patch
+*** Update File: index.html
+@@
+-    <script src="./assets/main-CllxS18W.js"></script>
+    <!-- Footer start -->
+    <footer class="melke-footer">
+        <div class="inner-container melke-footer__container">
+            <div class="melke-footer__brand">
+                <img src="./assets/melke-logo-hor-wite-SGI2bZZu.webp" alt="Melke logo">
+                <p>Мелке — лучшие окна в СПб</p>
+            </div>
+            <div class="melke-footer__columns">
+                <div class="melke-footer__column">
+                    <div class="melke-footer__title">Окна</div>
+                    <ul>
+                        <li><a href="#">Lite 70</a></li>
+                        <li><a href="#">Lite 60</a></li>
+                        <li><a href="#">Smart</a></li>
+                        <li><a href="#">Evolution</a></li>
+                        <li><a href="#">Wide</a></li>
+                        <li><a href="#">Centum</a></li>
+                    </ul>
+                </div>
+                <div class="melke-footer__column">
+                    <div class="melke-footer__title">Контакты</div>
+                    <ul>
+                        <li><a href="tel:+79313574707">+7&nbsp;931&nbsp;357&nbsp;47&nbsp;07</a></li>
+                        <li>Время работы: 10:00&nbsp;–&nbsp;18:00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <style>
+    /* Simple footer styling */
+    .melke-footer {
+        background-color: #17233c;
+        color: #fff;
+        padding: 40px 0;
+        font-size: 14px;
+    }
+    .melke-footer a { color: #fff; text-decoration: none; }
+    .melke-footer a:hover { text-decoration: underline; }
+    .melke-footer__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .melke-footer__brand img {
+        max-width: 160px;
+        margin-bottom: 10px;
+    }
+    .melke-footer__columns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+    .melke-footer__title {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .melke-footer__column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .melke-footer__column li {
+        margin-bottom: 8px;
+    }
+    @media (max-width: 768px) {
+        .melke-footer__container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .melke-footer__columns {
+            flex-direction: column;
+        }
+    }
+    </style>
+    <!-- Footer end -->
+    <script src="./assets/main-CllxS18W.js"></script>
+*** End Patch
