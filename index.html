@@ -68,7 +68,34 @@
                 <img src="./assets/prof-bg1-CSAddgpT.webp" alt="">
             </div>
         </section>
-        
+
+
+<section class="melke-lead-form">
+    <div class="inner-container">
+        <div class="melke-lead-form__box">
+            <h2 class="melke-lead-form__title">Закажи окна Melke</h2>
+            <p class="melke-lead-form__text">Отличные условия для заказа окон именно сейчас. Оставь номер телефона и получи расчет и замер бесплатно.</p>
+
+            <form class="melke-lead-form__form" action="send.php" method="post" novalidate>
+                <div class="melke-lead-form__row">
+                    <label class="melke-lead-form__label" for="leadNameTop">Ваше имя</label>
+                    <input class="melke-lead-form__input" type="text" id="leadNameTop" name="name" autocomplete="name">
+                </div>
+
+                <div class="melke-lead-form__row">
+                    <label class="melke-lead-form__label" for="leadPhoneTop">Номер телефона*</label>
+                    <input class="melke-lead-form__input" type="tel" id="leadPhoneTop" name="phone" placeholder="+7(___) ___-__-__" required autocomplete="tel">
+                </div>
+
+                <input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+
+                <button class="melke-lead-form__button" type="submit">Заказать</button>
+                <div class="melke-lead-form__status" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
         <section class="melke-about">
             <div class="inner-container melke-about__container">
                 <div class="melke-about__bg">
@@ -759,21 +786,21 @@
             <h2 class="melke-lead-form__title">Закажи окна Melke</h2>
             <p class="melke-lead-form__text">Отличные условия для заказа окон именно сейчас. Оставь номер телефона и получи расчет и замер бесплатно.</p>
 
-            <form class="melke-lead-form__form" id="leadForm" action="send.php" method="post" novalidate>
+            <form class="melke-lead-form__form" action="send.php" method="post" novalidate>
                 <div class="melke-lead-form__row">
-                    <label class="melke-lead-form__label" for="leadName">Ваше имя</label>
-                    <input class="melke-lead-form__input" type="text" id="leadName" name="name" autocomplete="name">
+                    <label class="melke-lead-form__label" for="leadNameBottom">Ваше имя</label>
+                    <input class="melke-lead-form__input" type="text" id="leadNameBottom" name="name" autocomplete="name">
                 </div>
 
                 <div class="melke-lead-form__row">
-                    <label class="melke-lead-form__label" for="leadPhone">Номер телефона*</label>
-                    <input class="melke-lead-form__input" type="tel" id="leadPhone" name="phone" placeholder="+7(___) ___-__-__" required autocomplete="tel">
+                    <label class="melke-lead-form__label" for="leadPhoneBottom">Номер телефона*</label>
+                    <input class="melke-lead-form__input" type="tel" id="leadPhoneBottom" name="phone" placeholder="+7(___) ___-__-__" required autocomplete="tel">
                 </div>
 
                 <input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
 
                 <button class="melke-lead-form__button" type="submit">Заказать</button>
-                <div class="melke-lead-form__status" id="leadFormStatus" aria-live="polite"></div>
+                <div class="melke-lead-form__status" aria-live="polite"></div>
             </form>
         </div>
     </div>
@@ -969,47 +996,50 @@
 
 <script>
 (function () {
-    var form = document.getElementById('leadForm');
-    var statusEl = document.getElementById('leadFormStatus');
+    var forms = document.querySelectorAll('.melke-lead-form__form');
 
-    if (!form || !statusEl) {
-        return;
-    }
+    forms.forEach(function (form) {
+        var statusEl = form.querySelector('.melke-lead-form__status');
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
+        if (!statusEl) {
+            return;
+        }
 
-        statusEl.textContent = '';
-        statusEl.classList.remove('melke-lead-form__status--success', 'melke-lead-form__status--error');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        var formData = new FormData(form);
+            statusEl.textContent = '';
+            statusEl.classList.remove('melke-lead-form__status--success', 'melke-lead-form__status--error');
 
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-            .then(function (response) {
-                return response.json().catch(function () {
-                    throw new Error('Некорректный ответ сервера');
-                });
-            })
-            .then(function (data) {
-                if (data.success) {
-                    statusEl.textContent = 'Отправлено';
-                    statusEl.classList.add('melke-lead-form__status--success');
-                    form.reset();
-                    return;
+            var formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
-
-                throw new Error(data.message || 'Не удалось отправить форму.');
             })
-            .catch(function (error) {
-                statusEl.textContent = error.message;
-                statusEl.classList.add('melke-lead-form__status--error');
-            });
+                .then(function (response) {
+                    return response.json().catch(function () {
+                        throw new Error('Некорректный ответ сервера');
+                    });
+                })
+                .then(function (data) {
+                    if (data.success) {
+                        statusEl.textContent = 'Отправлено';
+                        statusEl.classList.add('melke-lead-form__status--success');
+                        form.reset();
+                        return;
+                    }
+
+                    throw new Error(data.message || 'Не удалось отправить форму.');
+                })
+                .catch(function (error) {
+                    statusEl.textContent = error.message;
+                    statusEl.classList.add('melke-lead-form__status--error');
+                });
+        });
     });
 })();
 </script>
