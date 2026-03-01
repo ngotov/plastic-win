@@ -60,7 +60,7 @@ img{max-width:100%;display:block}
 .melke-step p{margin:0;color:#dce0eb}
 .melke-step b{justify-self:start;background:#ffffff17;border:1px solid #ffffff2d;padding:6px 12px;border-radius:999px;font-size:13px}
 
-.melke-grid--benefits,.melke-grid--reasons{grid-template-columns:repeat(3,minmax(0,1fr))}
+.melke-grid--benefits,.melke-grid--reasons,.melke-grid--services{grid-template-columns:repeat(3,minmax(0,1fr))}
 .melke-icon-card{background:var(--surface-soft);border:1px solid #ffffff21;border-radius:var(--radius);padding:20px;display:flex;gap:14px;align-items:flex-start}
 .melke-icon-card p{margin:0;font-weight:700;line-height:1.3}
 .melke-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;background:#ffffff14;flex-shrink:0}
@@ -112,7 +112,7 @@ img{max-width:100%;display:block}
   .melke-header__main{grid-template-columns:minmax(130px,170px) 1fr auto;grid-template-areas:"logo slogan burger" "contacts actions actions"}
   .melke-header__logo{grid-area:logo}.melke-header__slogan{grid-area:slogan}.melke-burger{grid-area:burger;justify-self:end}
   .melke-header__contacts{grid-area:contacts}.melke-header__actions{grid-area:actions}
-  .melke-grid--profiles,.melke-grid--steps,.melke-grid--benefits,.melke-grid--reasons{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .melke-grid--profiles,.melke-grid--steps,.melke-grid--benefits,.melke-grid--reasons,.melke-grid--services{grid-template-columns:repeat(2,minmax(0,1fr))}
   .melke-lead-form__form{grid-template-columns:1fr 1fr}
   .melke-lead-form__submit{grid-column:1/-1}
 }
@@ -123,9 +123,12 @@ img{max-width:100%;display:block}
   .melke-header.is-menu-open .melke-burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
   .melke-header.is-menu-open .melke-burger span:nth-child(2){opacity:0}
   .melke-header.is-menu-open .melke-burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-  .melke-header__main{grid-template-columns:minmax(140px,160px) auto;grid-template-areas:"logo burger" "slogan slogan" "contacts contacts" "actions actions";padding:12px 0}
-  .melke-header__messengers{display:none}
-  .melke-header__actions{display:none}
+  .melke-header__main{grid-template-columns:minmax(120px,150px) 1fr auto;grid-template-areas:"logo phone burger";gap:10px;padding:8px 0}
+  .melke-header__logo{grid-area:logo}
+  .melke-header__contacts{grid-area:phone;justify-self:end}
+  .melke-header__contact-text{display:flex;align-items:center}
+  .melke-header__phone{font-size:18px;line-height:1.1}
+  .melke-header__slogan,.melke-header__hours,.melke-header__messengers,.melke-header__actions{display:none}
   .melke-header__nav{position:fixed;top:0;right:0;height:100vh;width:min(320px,86vw);background:#13141b;border:none;transform:translateX(100%);transition:transform .25s ease;padding-top:88px}
   .melke-header__nav-inner{display:grid;gap:4px;padding:0 16px 24px}
   .melke-header__nav-inner a{padding:12px;border-radius:10px;background:#ffffff08;border-bottom:none}
@@ -138,10 +141,40 @@ img{max-width:100%;display:block}
   .melke-guarantee{grid-template-columns:1fr}
   .melke-faq__question{font-size:17px}
   .melke-footer__container{grid-template-columns:1fr}
+  .melke-modal__dialog{padding:22px 16px}
+  .melke-modal .melke-lead-form__form{grid-template-columns:1fr}
 }
 @media (max-width: 560px){
-  .melke-grid--profiles,.melke-grid--steps,.melke-grid--benefits,.melke-grid--reasons,.melke-lead-form__form{grid-template-columns:1fr}
+  .melke-grid--profiles,.melke-grid--steps,.melke-grid--benefits,.melke-grid--reasons,.melke-grid--services,.melke-lead-form__form{grid-template-columns:1fr}
   .melke-lead-form__box{padding:22px}
-  .melke-header__phone{font-size:20px}
-  .melke-header__hours{font-size:11px}
+  .melke-header__main{grid-template-columns:minmax(100px,128px) 1fr auto;gap:8px}
+  .melke-header__phone{font-size:15px}
 }
+
+
+.melke-about__text{margin:0;max-width:980px;color:#e4e7ef}
+.melke-card--profile{padding:18px}
+.melke-card__media{position:relative;border-radius:14px;overflow:hidden}
+.melke-card__media img{width:100%;height:220px;object-fit:cover}
+.melke-card__overlay{position:absolute;inset:auto 0 0;padding:14px;background:linear-gradient(180deg,rgba(9,10,13,0) 0%,rgba(9,10,13,.86) 75%)}
+.melke-card__overlay h3{font-size:24px}
+.melke-card__overlay .melke-card__tag{color:#c8f3ab}
+
+.melke-benefit-card{min-height:220px;border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;border:1px solid #ffffff24;background-image:linear-gradient(180deg,rgba(7,8,10,.2) 0%,rgba(7,8,10,.82) 68%),var(--card-bg);background-size:cover;background-position:center}
+.melke-benefit-card h3{margin:0;font-size:24px}
+.melke-benefit-card p{margin:0;color:#eef1f7}
+
+.melke-service-card{padding:18px;gap:12px}
+.melke-service-card img{width:100%;height:190px;object-fit:cover;border-radius:12px}
+.melke-service-card h3{margin:0;font-size:24px;line-height:1.15}
+.melke-service-card p{margin:0;color:#dde2ec}
+.melke-service-card__lead{font-weight:700;color:#fff}
+.melke-services__action{display:flex;justify-content:center;margin-top:28px}
+
+.melke-modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:24px}
+.melke-modal.is-open{display:flex}
+.melke-modal__backdrop{position:absolute;inset:0;background:rgba(5,6,9,.78)}
+.melke-modal__dialog{position:relative;width:min(760px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#181922;border:1px solid #ffffff29;border-radius:18px;padding:26px}
+.melke-modal__close{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:10px;border:1px solid #ffffff3d;background:#ffffff12;color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.melke-modal .melke-lead-form__form{grid-template-columns:1fr 1fr}
+.melke-modal .melke-lead-form__submit{grid-column:1/-1}

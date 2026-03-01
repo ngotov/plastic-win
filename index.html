@@ -55,12 +55,19 @@
 
 <main>
     <section class="melke-hero">
-        <img src="./assets/melke-proizvodstvo-11-1950-BRDawtf_.jpg" alt="Пластиковые окна Melke" class="melke-hero__bg">
+        <img src="./assets/firstblock.jpg" alt="Пластиковые окна Melke" class="melke-hero__bg">
         <div class="melke-hero__overlay"></div>
         <div class="inner-container melke-hero__content">
             <h1>ПЛАСТИКОВЫЕ ОКНА MELKE<br>ОТ ПРОИЗВОДИТЕЛЯ</h1>
             <p class="melke-hero__text">Точный замер, изготовление и установка по технологии с официальной гарантией.</p>
-            <a href="#melke-installment" class="melke-btn melke-btn--filled melke-hero__cta">Заказать бесплатный замер</a>
+            <button type="button" class="melke-btn melke-btn--filled melke-hero__cta" data-modal-trigger="lead-modal">Заказать бесплатный замер</button>
+        </div>
+    </section>
+
+    <section class="melke-section" id="about">
+        <div class="inner-container">
+            <h2 class="melke-title">О нас</h2>
+            <p class="melke-about__text">Мы предлагаем полный спектр услуг по остеклению: от коттеджей до стеклянных козырьков. Гарантируем быстрое изготовление и профессиональный монтаж. Наши решения обеспечивают комфорт и эстетику, а работа слаженной команды позволяет нам выполнять заказы качественно и в срок</p>
         </div>
     </section>
 
@@ -69,8 +76,10 @@
             <h2 class="melke-title">Оконные профили Melke</h2>
             <div class="melke-grid melke-grid--profiles">
                 <article class="melke-card melke-card--profile">
-                    <h3>Centum</h3>
-                    <p class="melke-card__tag">Самый теплый</p>
+                    <div class="melke-card__media">
+                        <img src="./assets/centumprofile.png" alt="Профиль Centum">
+                        <div class="melke-card__overlay"><h3>Centum</h3><p class="melke-card__tag">Самый теплый</p></div>
+                    </div>
                     <ul class="melke-card__list">
                         <li>Монтажная ширина, мм — 80/100</li>
                         <li>Воздушные камеры — 6/7/6</li>
@@ -79,8 +88,10 @@
                     <a href="#melke-installment" class="melke-btn melke-btn--secondary">Подробнее</a>
                 </article>
                 <article class="melke-card melke-card--profile">
-                    <h3>Wide</h3>
-                    <p class="melke-card__tag">Больше цвета</p>
+                    <div class="melke-card__media">
+                        <img src="./assets/wideprofile.png" alt="Профиль Wide">
+                        <div class="melke-card__overlay"><h3>Wide</h3><p class="melke-card__tag">Больше цвета</p></div>
+                    </div>
                     <ul class="melke-card__list">
                         <li>Монтажная ширина, мм — 80/95</li>
                         <li>Воздушные камеры — 5/6/5</li>
@@ -89,8 +100,10 @@
                     <a href="#melke-installment" class="melke-btn melke-btn--secondary">Подробнее</a>
                 </article>
                 <article class="melke-card melke-card--profile">
-                    <h3>Evolution</h3>
-                    <p class="melke-card__tag">Хит продаж</p>
+                    <div class="melke-card__media">
+                        <img src="./assets/evolutionprofile.png" alt="Профиль Evolution">
+                        <div class="melke-card__overlay"><h3>Evolution</h3><p class="melke-card__tag">Хит продаж</p></div>
+                    </div>
                     <ul class="melke-card__list">
                         <li>Монтажная ширина, мм — 70</li>
                         <li>Воздушные камеры — 5/5/5</li>
@@ -99,8 +112,10 @@
                     <a href="#melke-installment" class="melke-btn melke-btn--secondary">Подробнее</a>
                 </article>
                 <article class="melke-card melke-card--profile">
-                    <h3>Smart Ultra</h3>
-                    <p class="melke-card__tag">Новинка</p>
+                    <div class="melke-card__media">
+                        <img src="./assets/SmartUltraprofile.png" alt="Профиль Smart Ultra">
+                        <div class="melke-card__overlay"><h3>Smart Ultra</h3><p class="melke-card__tag">Новинка</p></div>
+                    </div>
                     <ul class="melke-card__list">
                         <li>Монтажная ширина, мм — 65</li>
                         <li>Воздушные камеры — 4/4/4</li>
@@ -109,8 +124,10 @@
                     <a href="#melke-installment" class="melke-btn melke-btn--secondary">Подробнее</a>
                 </article>
                 <article class="melke-card melke-card--profile">
-                    <h3>Lite`70</h3>
-                    <p class="melke-card__tag">Бюджетная линейка</p>
+                    <div class="melke-card__media">
+                        <img src="./assets/70profile.png" alt="Профиль Lite 70">
+                        <div class="melke-card__overlay"><h3>Lite 70</h3><p class="melke-card__tag">Бюджетная линейка</p></div>
+                    </div>
                     <ul class="melke-card__list">
                         <li>Монтажная ширина, мм — 70</li>
                         <li>Воздушные камеры — 4/4/4</li>
@@ -119,8 +136,10 @@
                     <a href="#melke-installment" class="melke-btn melke-btn--secondary">Подробнее</a>
                 </article>
                 <article class="melke-card melke-card--profile">
-                    <h3>Lite`60</h3>
-                    <p class="melke-card__tag">Лучшая цена</p>
+                    <div class="melke-card__media">
+                        <img src="./assets/60profile.png" alt="Профиль Lite 60">
+                        <div class="melke-card__overlay"><h3>Lite 60</h3><p class="melke-card__tag">Лучшая цена</p></div>
+                    </div>
                     <ul class="melke-card__list">
                         <li>Монтажная ширина, мм — 60</li>
                         <li>Воздушные камеры — 3/3/4</li>
@@ -129,6 +148,21 @@
                     <a href="#melke-installment" class="melke-btn melke-btn--secondary">Подробнее</a>
                 </article>
             </div>
+        </div>
+    </section>
+
+    <section class="melke-section melke-section--dark" id="services">
+        <div class="inner-container">
+            <h2 class="melke-title">Наши услуги по остеклению</h2>
+            <div class="melke-grid melke-grid--services">
+                <article class="melke-card melke-service-card"><img src="./assets/drnrdhjjfb.jpeg" alt="Остекление коттеджей"><h3>Остекление коттеджей</h3><p class="melke-service-card__lead">Обеспечьте тепло и комфорт в вашем доме с помощью профессионального остекления коттеджей.</p><p>Наши специалисты предлагают комплексные решения для остекления коттеджей, включая замену холодного остекления на тёплое и установку окон под ключ.</p></article>
+                <article class="melke-card melke-service-card"><img src="./assets/lmkemkseu.jpeg" alt="Замена холодного остекления на тёплое"><h3>Замена холодного остекления на тёплое</h3><p class="melke-service-card__lead">Повысьте комфорт вашего дома, заменив холодное остекление на тёплое.</p><p>Мы предлагаем услуги по замене холодного остекления на тёплое, что поможет вам улучшить теплоизоляцию и комфорт в вашем доме.</p></article>
+                <article class="melke-card melke-service-card"><img src="./assets/xndhufnrfgdjf.jpeg" alt="Замена окон под ключ"><h3>Замена окон под ключ</h3><p class="melke-service-card__lead">Получите новое остекление с помощью наших комплексных услуг по замене окон.</p><p>Мы предлагаем полный комплекс услуг по замене окон под ключ, включая установку новых конструкций и их настройку.</p></article>
+                <article class="melke-card melke-service-card"><img src="./assets/jmchhfgmdjkkqppriu.jpeg" alt="Остекление террас"><h3>Остекление террас</h3><p class="melke-service-card__lead">Преобразите вашу террасу с помощью профессионального остекления.</p><p>Мы предлагаем решения для остекления террас, которые помогут вам создать уютное и защищённое пространство для отдыха.</p></article>
+                <article class="melke-card melke-service-card"><img src="./assets/wwuimmmvvggd.jpeg" alt="Стеклянные козырьки"><h3>Стеклянные козырьки</h3><p class="melke-service-card__lead">Защитите вход в ваш дом с помощью стеклянных козырьков.</p><p>Мы предлагаем стильные и надёжные стеклянные козырьки, которые не только защитят ваш вход, но и украсят фасад вашего дома.</p></article>
+                <article class="melke-card melke-service-card"><img src="./assets/mmvbncbbbdggqrtcijlf.jpeg" alt="Стоечно-ригельные системы"><h3>Стоечно-ригельные системы</h3><p class="melke-service-card__lead">Выберите современные стоечно-ригельные системы для вашего проекта.</p><p>Мы предлагаем широкий выбор стоечно-ригельных систем, которые помогут вам реализовать уникальные дизайнерские решения.</p></article>
+            </div>
+            <div class="melke-services__action"><a href="#melke-installment" class="melke-btn melke-btn--filled">Заказать расчет стоимости</a></div>
         </div>
     </section>
 
@@ -148,12 +182,12 @@
         <div class="inner-container">
             <h2 class="melke-title">Преимущества покупок окон Melke в нашей компании</h2>
             <div class="melke-grid melke-grid--benefits">
-                <article class="melke-icon-card"><span class="melke-icon"><svg viewBox="0 0 24 24"><path d="M4 20h16M5 20V9l7-5 7 5v11M9 20v-6h6v6"/></svg></span><p>Собственное производство</p></article>
-                <article class="melke-icon-card"><span class="melke-icon"><svg viewBox="0 0 24 24"><path d="M12 3c4 3 6 6 6 9a6 6 0 1 1-12 0c0-3 2-6 6-9z"/></svg></span><p>Экологичные материалы</p></article>
-                <article class="melke-icon-card"><span class="melke-icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/></svg></span><p>Гарантия производителя</p></article>
-                <article class="melke-icon-card"><span class="melke-icon"><svg viewBox="0 0 24 24"><path d="M4 19a8 8 0 0 1 16 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></span><p>Индивидуальный подход</p></article>
-                <article class="melke-icon-card"><span class="melke-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg></span><p>Сертифицированная продукция</p></article>
-                <article class="melke-icon-card"><span class="melke-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 8h16M4 16h16"/></svg></span><p>Рассрочка без переплат</p></article>
+                <article class="melke-benefit-card" style="--card-bg:url('lxa8kSKhqJpchQD0RcXXCkN6aelilHZhNYF6jdJN.jpg')"><h3>Скорость</h3><p>Мы предлагаем быстрые сроки изготовления конструкций — от 5 рабочих дней.</p></article>
+                <article class="melke-benefit-card" style="--card-bg:url('QMXJ5S9U5brtd9eKFzGf6YwitjmtSobFiOQCHZFH.jpg')"><h3>качество</h3><p>Наши монтажные бригады обеспечивают качественную и быструю установку на объекте.</p></article>
+                <article class="melke-benefit-card" style="--card-bg:url('vreGdhMyXCNkcxXgPafWJlWOjVMj6NEt7sWzRqgx.jpg')"><h3>Звукоизоляция</h3><p>Мы повышаем комфорт вашего пространства с помощью улучшенной звукоизоляции и защиты от сквозняков.</p></article>
+                <article class="melke-benefit-card" style="--card-bg:url('GtUqR3Noa3PoW1sWvPUQfHJM1KpfCwk2mod9xosS.jpg')"><h3>Стиль</h3><p>Наши решения добавят вашему дому эстетику и стиль, улучшат его внешний вид и индивидуальность.</p></article>
+                <article class="melke-benefit-card" style="--card-bg:url('mF5ULTMcUxOtv9LtFK6MXzQvr5ix0XjQ58vmrIu7.jpg')"><h3>Профессионализм</h3><p>В штате монтажные бригады, мы не прибегаем к услугам наёмных работников.</p></article>
+                <article class="melke-benefit-card" style="--card-bg:url('awj5QTRACqMpaFq3CmnGGyjQhSQGaML1f2xXQ0T6.jpg')"><h3>Экологичные материалы</h3><p>Производим качественный продукт с заботой о среде.</p></article>
             </div>
         </div>
     </section>
@@ -267,6 +301,27 @@
     <div class="inner-container melke-footer__bottom">© Melke, 2026. Все права защищены.</div>
 </footer>
 
+<div class="melke-modal" id="lead-modal" aria-hidden="true">
+    <div class="melke-modal__backdrop" data-modal-close></div>
+    <div class="melke-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+        <button type="button" class="melke-modal__close" aria-label="Закрыть" data-modal-close>×</button>
+        <h2 class="melke-lead-form__title" id="leadModalTitle">Заказать бесплатный замер</h2>
+        <form class="melke-lead-form__form" action="send.php" method="post" novalidate>
+            <div class="melke-lead-form__row">
+                <label class="melke-lead-form__label" for="leadNameModal">Ваше имя</label>
+                <input class="melke-lead-form__input" type="text" id="leadNameModal" name="name" placeholder="Введите имя" autocomplete="name">
+            </div>
+            <div class="melke-lead-form__row">
+                <label class="melke-lead-form__label" for="leadPhoneModal">Номер телефона*</label>
+                <input class="melke-lead-form__input" type="tel" id="leadPhoneModal" name="phone" placeholder="+7(___) ___-__-__" required autocomplete="tel">
+            </div>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" class="melke-lead-form__trap" aria-hidden="true">
+            <button class="melke-lead-form__submit" type="submit">Оставить заявку</button>
+            <p class="melke-lead-form__status" role="status" aria-live="polite"></p>
+        </form>
+    </div>
+</div>
+
 <script>
 (function () {
     var forms = document.querySelectorAll('.melke-lead-form__form');
@@ -349,6 +404,7 @@
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
             closeMenu();
+            closeModal();
         }
     });
 
@@ -357,6 +413,54 @@
     }
     toggleScrolledState();
     window.addEventListener('scroll', toggleScrolledState, { passive: true });
+
+    var modal = document.getElementById('lead-modal');
+    var modalLastTrigger = null;
+
+    function closeModal() {
+        if (!modal || !modal.classList.contains('is-open')) {
+            return;
+        }
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('melke-lock');
+        if (modalLastTrigger) {
+            modalLastTrigger.focus();
+        }
+        modalLastTrigger = null;
+    }
+
+    function openModal(trigger) {
+        if (!modal) {
+            return;
+        }
+        modalLastTrigger = trigger;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('melke-lock');
+        var focusTarget = modal.querySelector('.melke-lead-form__input');
+        if (focusTarget) {
+            focusTarget.focus();
+        }
+    }
+
+    document.querySelectorAll('[data-modal-trigger="lead-modal"]').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+            openModal(trigger);
+        });
+    });
+
+    if (modal) {
+        modal.querySelectorAll('[data-modal-close]').forEach(function (closer) {
+            closer.addEventListener('click', closeModal);
+        });
+
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
 
     var faqButtons = document.querySelectorAll('.melke-faq__question');
     faqButtons.forEach(function (button) {
