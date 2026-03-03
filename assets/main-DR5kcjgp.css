@@ -133,7 +133,7 @@ html{scroll-padding-top:170px}
   .melke-header__phone{font-size:18px;line-height:1.1}
   .melke-header__messengers{display:flex}
   .melke-header__slogan,.melke-header__hours,.melke-header__actions{display:none}
-  .melke-header__nav{position:fixed;top:0;right:0;height:100vh;width:35vw;background:#13141b;border:none;transform:translateX(100%);transition:transform .25s ease;padding-top:88px}
+  .melke-header__nav{position:fixed;top:0;right:0;height:100vh;width:100vw;background:#13141b;border:none;transform:translateX(100%);transition:transform .25s ease;padding-top:88px}
   .melke-header__nav-inner{display:grid;gap:4px;padding:0 16px 24px}
   .melke-header__nav-inner a{padding:12px;border-radius:10px;background:#ffffff08;border-bottom:none}
   .melke-menu-backdrop{position:fixed;inset:0;background:#0008;z-index:35;opacity:0;pointer-events:none;transition:opacity .2s ease;display:block}
