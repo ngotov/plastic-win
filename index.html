@@ -33,13 +33,14 @@
         </div>
 
         <div class="melke-header__actions">
-            <a href="#melke-installment" class="melke-btn melke-btn--filled">Заказать звонок</a>
-            <a href="#melke-installment" class="melke-btn melke-btn--secondary">Вызвать замерщика</a>
+            <button type="button" class="melke-btn melke-btn--filled" data-modal-trigger="lead-modal" data-modal-title="Наш менеджер перезвонит вам в ближайшее время">Заказать звонок</button>
+            <button type="button" class="melke-btn melke-btn--secondary" data-modal-trigger="lead-modal" data-modal-title="Заказать замер 📏">Вызвать замерщика</button>
         </div>
     </div>
 
     <nav class="melke-header__nav" id="melke-mobile-menu" aria-label="Главное меню">
         <div class="inner-container melke-header__nav-inner">
+            <button class="melke-menu-close" type="button" aria-label="Закрыть меню" data-menu-close>×</button>
             <a href="#profiles">Профили</a>
             <a href="#steps">Порядок работы</a>
             <a href="#benefits">Преимущества</a>
@@ -294,7 +295,7 @@
             <ul class="melke-footer__details">
                 <li class="melke-footer__phone">+7 931-357-47-07</li>
                 <li class="melke-footer__mail">Alexander.v.Cherne@yandex.ru</li>
-                <li>Пн–Вс: 09:00–21:00</li>
+                <li>Пн–Вс: 08:00–20:00</li>
             </ul>
         </div>
     </div>
@@ -401,6 +402,10 @@
         link.addEventListener('click', closeMenu);
     });
 
+    menu.querySelectorAll('[data-menu-close]').forEach(function (closer) {
+        closer.addEventListener('click', closeMenu);
+    });
+
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
             closeMenu();
@@ -449,7 +454,8 @@
     }
 
     document.querySelectorAll('[data-modal-trigger="lead-modal"]').forEach(function (trigger) {
-        trigger.addEventListener('click', function () {
+        trigger.addEventListener('click', function (event) {
+            event.preventDefault();
             openModal(trigger);
         });
     });
