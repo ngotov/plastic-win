@@ -192,6 +192,10 @@ html{scroll-padding-top:170px}
   .melke-social img{width:24px;height:24px}
 }
 
+@media (min-width: 1024px){
+  .melke-header__phone{font-size:17px}
+}
+
 
 
 .melke-about__text{margin:0 auto;max-width:980px;color:#e4e7ef;text-align:center;font-size:clamp(18px,2.1vw,22px);line-height:1.6}
