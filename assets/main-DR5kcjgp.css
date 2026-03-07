@@ -156,27 +156,28 @@ html{scroll-padding-top:170px}
   .melke-modal__dialog{padding:22px 16px}
   .melke-modal .melke-lead-form__form{grid-template-columns:1fr}
 }
-@media (min-width: 768px) and (max-width: 1023px){
-  .melke-header__main{grid-template-columns:auto minmax(260px,1fr) auto;grid-template-areas:"logo contacts burger";gap:10px;padding:10px clamp(2px,.8vw,8px)}
-  .melke-header__logo{min-width:210px}
-  .melke-header__contacts{justify-self:end;min-width:260px;align-items:flex-end;gap:6px}
-  .melke-header__contact-text{display:flex;align-items:center}
-  .melke-header__phone{font-size:18px;line-height:1.1}
-  .melke-header__messengers{min-width:214px;justify-content:flex-end}
+@media (min-width: 560px) and (max-width: 1023px){
+  .melke-header__main{grid-template-columns:minmax(170px,auto) minmax(0,1fr) auto;grid-template-areas:"logo contacts burger";align-items:center;gap:clamp(8px,1.6vw,20px);padding:10px clamp(4px,1.2vw,12px)}
+  .melke-header__logo{min-width:0}
+  .melke-header__logo img{height:clamp(44px,7vw,76px);max-width:min(34vw,300px)}
+  .melke-header__contacts{justify-self:stretch;justify-content:center;align-items:center;flex-wrap:nowrap;gap:clamp(10px,1.5vw,20px);min-width:0;width:100%}
+  .melke-header__messengers{min-width:0;gap:clamp(6px,1vw,20px);justify-content:center;flex:0 1 auto}
+  .melke-header__contact-text{display:flex;align-items:center;min-width:0;flex:0 1 auto}
+  .melke-header__phone{font-size:clamp(16px,2vw,22px);line-height:1.1}
   .melke-header__meta{display:none}
+}
+@media (min-width: 768px) and (max-width: 1023px){
   .melke-grid--profiles,.melke-grid--steps,.melke-grid--benefits,.melke-grid--reasons,.melke-grid--services{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width: 767px){
-  .melke-header__main{grid-template-columns:minmax(180px,1fr) minmax(0,1fr) auto;grid-template-areas:"logo contacts burger";gap:8px;padding:10px 4px}
-  .melke-header__logo{min-width:180px}
-  .melke-header__logo img{height:clamp(44px,7vw,72px)}
-  .melke-header__contacts{min-width:0;align-items:flex-end;justify-self:end;gap:6px}
-  .melke-header__contact-text{display:flex;align-items:center}
-  .melke-header__phone{font-size:16px;line-height:1.1}
-  .melke-header__messengers{min-width:0;justify-content:flex-end}
-  .melke-header__meta{display:none}
+  .melke-header__main{grid-template-columns:minmax(160px,auto) minmax(0,1fr) auto;gap:clamp(8px,2vw,12px);padding:10px clamp(2px,.9vw,6px)}
+  .melke-header__contacts{justify-content:flex-end;gap:clamp(8px,1.8vw,14px)}
+  .melke-header__messengers{gap:clamp(6px,1.6vw,12px)}
+  .melke-header__phone{font-size:clamp(15px,2.8vw,18px)}
+  .melke-social{width:54px;height:54px}
+  .melke-social img{width:30px;height:30px}
 }
-@media (max-width: 560px){
+@media (max-width: 559px){
   .melke-grid--profiles,.melke-grid--steps,.melke-grid--benefits,.melke-grid--reasons,.melke-grid--services,.melke-lead-form__form{grid-template-columns:1fr}
   .melke-lead-form__box{padding:22px}
   .melke-header__main{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"logo burger" "contacts contacts";row-gap:8px;column-gap:8px;padding:10px 2px}
