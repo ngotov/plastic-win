@@ -225,3 +225,44 @@ html{scroll-padding-top:170px}
 .melke-modal__close{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:10px;border:1px solid #ffffff3d;background:#ffffff12;color:#fff;font-size:26px;line-height:1;cursor:pointer}
 .melke-modal .melke-lead-form__form{grid-template-columns:1fr 1fr}
 .melke-modal .melke-lead-form__submit{grid-column:1/-1}
+
+.centum-page .melke-section:first-child{padding-top:220px}
+.centum-hero{display:grid;gap:28px}
+.centum-hero__title{margin-bottom:0;text-align:center}
+.centum-carousel{position:relative;border-radius:24px;overflow:hidden;background:#0f1015;border:1px solid #ffffff2a;box-shadow:0 24px 50px rgba(0,0,0,.35);padding:clamp(14px,2.4vw,24px)}
+.centum-carousel__track{position:relative;aspect-ratio:16/9}
+.centum-carousel__slide{position:absolute;inset:0;opacity:0;transition:opacity .35s ease;pointer-events:none}
+.centum-carousel__slide.is-active{opacity:1;pointer-events:auto}
+.centum-carousel__slide img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.centum-carousel__arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid #ffffff4d;background:#111217bf;color:#fff;font-size:32px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.centum-carousel__arrow:hover,.centum-carousel__arrow:focus-visible{background:#181a22;border-color:#ffffff7a;outline:none}
+.centum-carousel__arrow--prev{left:clamp(20px,3vw,34px)}
+.centum-carousel__arrow--next{right:clamp(20px,3vw,34px)}
+.centum-carousel__dots{position:absolute;left:50%;bottom:clamp(24px,3vw,30px);transform:translateX(-50%);display:flex;gap:10px;z-index:2}
+.centum-carousel__dots button{width:10px;height:10px;border-radius:50%;border:none;background:#ffffff75;cursor:pointer;padding:0}
+.centum-carousel__dots button.is-active{background:var(--accent);box-shadow:0 0 0 6px #78b84840}
+.centum-description{padding-top:36px}
+.centum-description__box{max-width:980px;margin:0 auto;background:linear-gradient(180deg,#20222d 0%,#191b24 100%);border:1px solid #ffffff2e;border-radius:24px;padding:clamp(22px,4vw,46px);box-shadow:0 16px 36px rgba(0,0,0,.22)}
+.centum-description__box .melke-title{font-size:clamp(30px,3.6vw,44px)}
+.centum-description__box p{margin:0 0 16px;color:#e5e8f0;font-size:clamp(17px,1.7vw,21px);line-height:1.65}
+.centum-description__features{margin:14px 0 0;padding-left:20px;display:grid;gap:10px;color:#f3f6fd}
+.centum-description__features li::marker{color:#91d95f}
+.centum-video__box{max-width:980px;margin:0 auto}
+.centum-video__lead{margin:-6px 0 22px;color:#d7dce7;font-size:clamp(16px,1.5vw,19px)}
+.centum-video__media{background:#171922;border:1px solid #ffffff26;border-radius:20px;padding:clamp(10px,2vw,18px);box-shadow:0 16px 32px rgba(0,0,0,.22)}
+.centum-video__media video{display:block;width:100%;height:auto;border-radius:14px;background:#000}
+@media (max-width: 1023px){
+  .centum-page .melke-section:first-child{padding-top:190px}
+  .centum-carousel__arrow{width:42px;height:42px;font-size:28px}
+}
+@media (max-width: 767px){
+  .centum-page .melke-section:first-child{padding-top:170px}
+  .centum-carousel{padding:12px}
+  .centum-carousel__track{aspect-ratio:4/3}
+  .centum-carousel__slide img{object-fit:contain;background:#0f1119}
+  .centum-carousel__arrow{top:auto;bottom:14px;transform:none;width:38px;height:38px;font-size:24px}
+  .centum-carousel__arrow--prev{left:14px}
+  .centum-carousel__arrow--next{right:14px}
+  .centum-carousel__dots{bottom:28px}
+  .centum-description{padding-top:20px}
+}
