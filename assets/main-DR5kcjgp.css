@@ -35,7 +35,7 @@ img{max-width:100%;display:block}
 .melke-header__actions .melke-btn{width:100%}
 .melke-header__nav{border-top:1px solid #ffffff24;border-bottom:1px solid #ffffff24}
 .melke-header__nav-inner{display:flex;justify-content:space-between;gap:16px;padding:12px 0}
-.melke-header__nav-inner > a,.melke-nav-item > a{text-decoration:none;text-transform:uppercase;font-weight:700;font-size:13px;white-space:nowrap;padding:4px 2px;border-bottom:2px solid transparent;transition:border-color .2s ease,color .2s ease}
+.melke-header__nav-inner > a,.melke-nav-item > a{display:block;text-decoration:none;text-transform:uppercase;font-weight:700;font-size:13px;white-space:nowrap;padding:4px 2px;border-bottom:2px solid transparent;transition:border-color .2s ease,color .2s ease}
 .melke-header__nav-inner > a:hover,.melke-header__nav-inner > a:focus-visible,.melke-nav-item > a:hover,.melke-nav-item > a:focus-visible{color:#bfef96;border-bottom-color:#bfef96;outline:none}
 .melke-nav-item{position:relative;display:flex;align-items:center}
 .melke-submenu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);list-style:none;margin:0;padding:8px;min-width:180px;background:#191b23;border:1px solid #ffffff1f;border-radius:12px;box-shadow:0 12px 26px rgba(0,0,0,.32);display:grid;gap:2px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease}
