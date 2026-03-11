@@ -3,10 +3,17 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=UTF-8');
 
-const RECIPIENT_EMAIL = 'alexander.v.cherne@yandex.ru';
-const MAIL_SUBJECT = 'Заявка с сайта melke.zonakomforta-spb.ru';
+require_once __DIR__ . '/mail-config.php';
+require_once __DIR__ . '/vendor/phpmailer/src/Exception.php';
+require_once __DIR__ . '/vendor/phpmailer/src/PHPMailer.php';
+require_once __DIR__ . '/vendor/phpmailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+
 const RATE_LIMIT_SECONDS = 20;
-const LOG_FILE = __DIR__ . '/send.log';
+const PHONE_MIN_DIGITS = 10;
+const PHONE_MAX_DIGITS = 15;
 
 function respond(int $statusCode, bool $success, string $message): void
 {
@@ -18,61 +25,106 @@ function respond(int $statusCode, bool $success, string $message): void
     exit;
 }
 
-function writeLog(string $message): void
+function getClientIp(): string
 {
-    $line = sprintf("[%s] %s\n", date('Y-m-d H:i:s'), $message);
-    error_log($line, 3, LOG_FILE);
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : 'unknown';
+}
+
+function isValidPhone(string $phone): bool
+{
+    if (!preg_match('/^[0-9+()\-\s]{6,30}$/u', $phone)) {
+        return false;
+    }
+
+    $digitsOnly = preg_replace('/\D+/', '', $phone) ?? '';
+    $digitsCount = strlen($digitsOnly);
+
+    return $digitsCount >= PHONE_MIN_DIGITS && $digitsCount <= PHONE_MAX_DIGITS;
+}
+
+function rateLimit(string $ip): bool
+{
+    $rateDir = sys_get_temp_dir() . '/melke_rate';
+    if (!is_dir($rateDir)) {
+        @mkdir($rateDir, 0775, true);
+    }
+
+    $rateFile = $rateDir . '/ip_' . md5($ip);
+    $lastRequest = is_file($rateFile) ? (int) file_get_contents($rateFile) : 0;
+
+    if ($lastRequest > 0 && (time() - $lastRequest) < RATE_LIMIT_SECONDS) {
+        return false;
+    }
+
+    file_put_contents($rateFile, (string) time(), LOCK_EX);
+    return true;
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(405, false, 'Метод не поддерживается.');
 }
 
-$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$rateFile = sys_get_temp_dir() . '/melke_rate_' . md5($ip);
-$lastRequest = is_file($rateFile) ? (int) file_get_contents($rateFile) : 0;
+$ip = getClientIp();
+if (!rateLimit($ip)) {
+    respond(429, false, 'Слишком частые отправки. Попробуйте чуть позже.');
+}
 
-if ($lastRequest > 0 && (time() - $lastRequest) < RATE_LIMIT_SECONDS) {
-    respond(429, false, 'Слишком частые отправки. Попробуйте позже.');
+$honeypot = trim((string) ($_POST['website'] ?? ''));
+if ($honeypot !== '') {
+    respond(400, false, 'Ошибка отправки заявки.');
 }
 
 $name = trim((string) ($_POST['name'] ?? ''));
 $phone = trim((string) ($_POST['phone'] ?? ''));
-$honeypot = trim((string) ($_POST['website'] ?? ''));
-
-if ($honeypot !== '') {
-    writeLog('Spam trap triggered from IP: ' . $ip);
-    respond(400, false, 'Ошибка отправки.');
-}
 
 if ($phone === '') {
     respond(422, false, 'Укажите номер телефона.');
 }
 
-if (!preg_match('/^[0-9+()\-\s]{6,30}$/u', $phone)) {
-    respond(422, false, 'Некорректный формат номера телефона.');
+if (!isValidPhone($phone)) {
+    respond(422, false, 'Проверьте корректность номера телефона.');
 }
 
-$body = "Новая заявка с сайта melke.zonakomforta-spb.ru\n"
+$page = trim((string) ($_POST['page'] ?? ''));
+if ($page === '') {
+    $page = trim((string) ($_SERVER['HTTP_REFERER'] ?? 'Не определено'));
+}
+if ($page === '') {
+    $page = 'Не определено';
+}
+
+$dateTime = date('d.m.Y H:i:s');
+$userAgent = trim((string) ($_SERVER['HTTP_USER_AGENT'] ?? 'Не определен'));
+
+$body = "Новая заявка с сайта " . SMTP_SITE_DOMAIN . "\n"
     . "Имя: " . ($name !== '' ? $name : 'Не указано') . "\n"
     . "Телефон: {$phone}\n"
+    . "Страница: {$page}\n"
+    . "Дата и время: {$dateTime}\n"
     . "IP: {$ip}\n"
-    . "Дата: " . date('d.m.Y H:i:s') . "\n";
+    . "User-Agent: {$userAgent}\n";
 
-$headers = [
-    'MIME-Version: 1.0',
-    'Content-type: text/plain; charset=UTF-8',
-    'From: melke.zonakomforta-spb.ru <no-reply@melke.zonakomforta-spb.ru>',
-    'Reply-To: no-reply@melke.zonakomforta-spb.ru',
-    'X-Mailer: PHP/' . phpversion(),
-];
+$mail = new PHPMailer(true);
 
-$sent = @mail(RECIPIENT_EMAIL, MAIL_SUBJECT, $body, implode("\r\n", $headers));
+try {
+    $mail->isSMTP();
+    $mail->Host = SMTP_HOST;
+    $mail->Port = SMTP_PORT;
+    $mail->SMTPSecure = SMTP_ENCRYPTION;
+    $mail->SMTPAuth = SMTP_AUTH;
+    $mail->Username = SMTP_USERNAME;
+    $mail->Password = SMTP_PASSWORD;
+    $mail->CharSet = 'UTF-8';
 
-if (!$sent) {
-    writeLog('Mail send failed from IP: ' . $ip . '; phone: ' . $phone);
-    respond(500, false, 'Не удалось отправить сообщение. Попробуйте позже.');
+    $mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);
+    $mail->addAddress(SMTP_TO_EMAIL);
+
+    $mail->Subject = 'Новая заявка с сайта ' . SMTP_SITE_DOMAIN;
+    $mail->Body = $body;
+
+    $mail->send();
+    respond(200, true, 'Спасибо! Заявка отправлена.');
+} catch (Exception $exception) {
+    respond(500, false, 'Не удалось отправить заявку. Попробуйте позже.');
 }
-
-file_put_contents($rateFile, (string) time(), LOCK_EX);
-respond(200, true, 'Отправлено');

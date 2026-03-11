@@ -207,8 +207,9 @@
 
     forms.forEach(function (form) {
         var statusEl = form.querySelector('.melke-lead-form__status');
+        var submitButton = form.querySelector('.melke-lead-form__submit');
 
-        if (!statusEl) {
+        if (!statusEl || !submitButton) {
             return;
         }
 
@@ -218,7 +219,14 @@
             statusEl.textContent = '';
             statusEl.classList.remove('melke-lead-form__status--success', 'melke-lead-form__status--error');
 
+            submitButton.disabled = true;
+            var defaultButtonText = submitButton.textContent;
+            submitButton.textContent = 'Отправка...';
+
             var formData = new FormData(form);
+            if (!formData.get('page')) {
+                formData.append('page', window.location.href);
+            }
 
             fetch(form.action, {
                 method: 'POST',
@@ -233,18 +241,21 @@
                     });
                 })
                 .then(function (data) {
-                    if (data.success) {
-                        statusEl.textContent = 'Отправлено';
-                        statusEl.classList.add('melke-lead-form__status--success');
-                        form.reset();
-                        return;
+                    if (!data.success) {
+                        throw new Error(data.message || 'Не удалось отправить форму.');
                     }
 
-                    throw new Error(data.message || 'Не удалось отправить форму.');
+                    statusEl.textContent = data.message || 'Спасибо! Заявка отправлена.';
+                    statusEl.classList.add('melke-lead-form__status--success');
+                    form.reset();
                 })
                 .catch(function (error) {
-                    statusEl.textContent = error.message;
+                    statusEl.textContent = error.message || 'Не удалось отправить заявку. Попробуйте позже.';
                     statusEl.classList.add('melke-lead-form__status--error');
+                })
+                .finally(function () {
+                    submitButton.disabled = false;
+                    submitButton.textContent = defaultButtonText;
                 });
         });
     });
