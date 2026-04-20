@@ -56,6 +56,26 @@ img{max-width:100%;display:block}
 .melke-hero__cta{font-size:16px;padding:18px 34px;min-height:60px;flex:1 1 280px}
 .melke-hero__cta--calc{border-color:#fff}
 
+.melke-offer-card{margin:0 0 20px;padding:18px 20px;border:1px solid #ffffff38;border-radius:14px;background:linear-gradient(135deg,rgba(25,27,34,.85) 0%,rgba(16,17,23,.92) 100%);max-width:620px}
+.melke-offer-card__title{margin:0 0 8px;font-size:clamp(22px,3vw,30px);line-height:1.15}
+.melke-offer-card__text{margin:0 0 10px;color:#e4e7ef}
+.melke-offer-card__gift{display:inline-block;margin:0 0 6px;padding:6px 12px;border-radius:999px;background:#78b8482e;border:1px solid #96da65;color:#d5f0bf;font-weight:700}
+.melke-offer-card__note{margin:0 0 14px;color:#dbe0eb}
+.melke-offer-card__cta{width:100%;max-width:360px}
+
+.melke-promo-strip{padding:26px 0;background:linear-gradient(90deg,#21242f 0%,#1a1c25 100%);border-top:1px solid #ffffff1a;border-bottom:1px solid #ffffff1a}
+.melke-promo-strip__inner{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.melke-promo-strip__text-wrap{display:grid;gap:8px;max-width:780px}
+.melke-promo-strip__label{margin:0;font-size:13px;color:#c8f3ab;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.melke-promo-strip__title{margin:0;font-size:clamp(24px,2.5vw,34px);line-height:1.1}
+.melke-promo-strip__text{margin:0;color:#dde2ec}
+.melke-promo-strip__cta{flex:0 0 auto;min-width:230px}
+
+.melke-offer-reminder{margin:0 0 18px;padding:16px;border-radius:14px;background:#ffffff0f;border:1px solid #ffffff2a}
+.melke-offer-reminder__title{margin:0 0 8px;font-size:clamp(22px,2.6vw,30px);line-height:1.15}
+.melke-offer-reminder__text{margin:0 0 6px;color:#e4e7ef}
+.melke-offer-reminder__note{margin:0;color:#d4d9e5}
+
 .melke-section{padding:74px 0}
 html{scroll-padding-top:170px}
 .melke-section[id]{scroll-margin-top:170px}
@@ -143,6 +163,8 @@ html{scroll-padding-top:170px}
   .melke-lead-form__submit{grid-column:1/-1}
 }
 @media (max-width: 1023px){
+  .melke-promo-strip__inner{flex-direction:column;align-items:flex-start}
+  .melke-promo-strip__cta{width:100%;min-width:0;max-width:320px}
   .inner-container{width:min(1180px,100% - 24px)}
   .melke-burger{display:flex;grid-area:burger;flex-direction:column;justify-content:center;gap:4px;width:42px;height:42px;background:#ffffff12;border:1px solid #ffffff2d;border-radius:10px}
   .melke-burger span{display:block;height:2px;background:#fff;margin:0 8px;transition:.25s ease}
@@ -241,6 +263,15 @@ html{scroll-padding-top:170px}
 
 
 @media (max-width: 520px){
+  .melke-offer-card{padding:14px 12px}
+  .melke-offer-card__title{font-size:22px}
+  .melke-offer-card__cta,
+  .melke-promo-strip__cta{width:100%;max-width:none}
+  .melke-promo-strip{padding:20px 0}
+  .melke-promo-strip__inner{gap:12px}
+  .melke-promo-strip__text-wrap{gap:6px}
+  .melke-offer-reminder{padding:14px}
+  .melke-offer-reminder__title{font-size:24px}
   .melke-modal{padding:10px;align-items:flex-start;overflow-y:auto;overflow-x:hidden}
   .melke-modal__dialog{width:100%;max-width:100%;max-height:none;margin:0;padding:18px 14px 16px}
   .melke-modal .melke-lead-form__form{display:flex;flex-direction:column;align-items:stretch;gap:12px}
