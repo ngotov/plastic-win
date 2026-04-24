@@ -51,7 +51,7 @@ img{max-width:100%;display:block}
 .melke-hero__overlay{background:linear-gradient(100deg,rgba(10,10,12,.84) 0%,rgba(10,10,12,.6) 55%,rgba(10,10,12,.72) 100%)}
 .melke-hero__content{position:relative;z-index:2;max-width:760px}
 .hero-promo{display:grid;gap:10px;margin:0 0 26px;max-width:700px}
-.hero-promo__badge{margin:0;display:inline-flex;align-items:center;padding:8px 14px;border-radius:10px;background:#788A5E;border:1px solid #d3e7ff52;color:#272A21;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;justify-self:start;box-shadow:0 8px 20px #0000004a,0 0 0 1px #ffffff0f inset;backdrop-filter:blur(2px)}
+.hero-promo__badge{margin:0;display:inline-flex;align-items:center;padding:8px 14px;border-radius:10px;background:linear-gradient(135deg,#0f1724d9 0%,#1a2a3ed1 100%);border:1px solid #d3e7ff52;color:#f6fbff;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;justify-self:start;box-shadow:0 8px 20px #0000004a,0 0 0 1px #ffffff0f inset;backdrop-filter:blur(2px)}
 .hero-promo__title{margin:0;font-size:clamp(20px,2.7vw,34px);line-height:1.12;font-weight:700;color:#f3f6fd;max-width:640px}.hero-promo__line{display:block}.hero-promo__line--fixed{white-space:nowrap}
 .melke-hero h1{margin:0 0 14px;font-size:clamp(32px,6vw,68px);line-height:1.05}
 .melke-hero__text{margin:0 0 28px;max-width:560px;color:#e4e7ef}
