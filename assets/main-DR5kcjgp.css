@@ -253,32 +253,3 @@ html{scroll-padding-top:170px}
   .melke-modal .melke-lead-form__status{margin-top:0}
   .melke-modal__close{top:8px;right:8px;z-index:2}
 }
-
-.melke-promo-popup{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:24px;overflow-x:hidden}
-.melke-promo-popup.is-open{display:flex}
-.melke-promo-popup__backdrop{position:absolute;inset:0;background:rgba(5,6,9,.78);backdrop-filter:blur(4px)}
-.melke-promo-popup__dialog{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow:auto;border:1px solid #ffffff30;border-radius:22px;background:linear-gradient(145deg,#23242d 0%,#16171f 100%);box-shadow:0 24px 70px rgba(0,0,0,.45);padding:34px 30px 30px;text-align:center;animation:melkePromoAppear .28s ease both}
-.melke-promo-popup__close{position:absolute;top:12px;right:12px;width:40px;height:40px;border:1px solid #ffffff3d;border-radius:12px;background:#ffffff12;color:#fff;font-size:28px;line-height:1;cursor:pointer}
-.melke-promo-popup__close:hover,.melke-promo-popup__close:focus-visible{background:#ffffff24;outline:none}
-.melke-promo-popup__eyebrow{display:inline-flex;margin:0 0 12px;padding:6px 12px;border-radius:999px;background:rgba(120,184,72,.16);color:#bfef96;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
-.melke-promo-popup__title{margin:0 0 14px;font-size:clamp(30px,4.6vw,44px);line-height:1.08}
-.melke-promo-popup__text{margin:0 auto 24px;max-width:420px;color:#e4e7ef;font-size:18px;line-height:1.45}
-.melke-promo-popup__button{width:100%;min-height:56px;font-size:16px;padding:18px 22px}
-.melke-gift-offer{grid-column:1/-1;display:none;justify-self:center;width:min(190px,54vw);margin:0 auto -2px;opacity:0;transform:scale(.72)}
-.melke-gift-offer.is-visible{display:block;animation:melkeGiftAppear .48s cubic-bezier(.2,.9,.25,1.25) both,melkeGiftPulse 2.8s ease-in-out .55s infinite}
-.melke-gift-offer img{width:100%;height:auto;filter:drop-shadow(0 16px 28px rgba(0,0,0,.28))}
-@keyframes melkePromoAppear{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes melkeGiftAppear{0%{opacity:0;transform:scale(.72) translateY(12px)}100%{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes melkeGiftPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.055)}}
-@media (max-width: 520px){
-  .melke-promo-popup{padding:10px;align-items:center;overflow-y:auto}
-  .melke-promo-popup__dialog{width:100%;max-width:100%;max-height:calc(100vh - 20px);padding:30px 16px 18px;border-radius:18px}
-  .melke-promo-popup__title{font-size:30px}
-  .melke-promo-popup__text{font-size:16px;margin-bottom:20px}
-  .melke-promo-popup__button{min-height:56px;padding-inline:16px}
-  .melke-gift-offer{width:min(170px,62vw);margin-bottom:0}
-}
-.melke-lead-form__submit-wrap{display:grid;gap:10px;align-self:end}
-.melke-lead-form__submit-wrap .melke-lead-form__submit{width:100%}
-.melke-lead-form__submit-wrap .melke-gift-offer{grid-column:auto}
-@media (max-width: 1199px){.melke-lead-form__submit-wrap{grid-column:1/-1}}
