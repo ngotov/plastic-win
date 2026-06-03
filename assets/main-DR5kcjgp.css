@@ -253,3 +253,44 @@ html{scroll-padding-top:170px}
   .melke-modal .melke-lead-form__status{margin-top:0}
   .melke-modal__close{top:8px;right:8px;z-index:2}
 }
+
+.gift-offer-popup{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:24px;color:#fff}
+.gift-offer-popup.is-open{display:flex}
+.gift-offer-popup__backdrop{position:absolute;inset:0;background:rgba(5,6,9,.76);backdrop-filter:blur(4px)}
+.gift-offer-popup__dialog{position:relative;width:min(440px,100%);max-height:calc(100vh - 40px);overflow:auto;border:1px solid #ffffff2e;border-radius:22px;background:linear-gradient(145deg,#202229 0%,#15161c 100%);box-shadow:0 24px 70px rgba(0,0,0,.42);padding:30px 28px 28px;text-align:center}
+.gift-offer-popup__dialog::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 50% 0%,rgba(120,184,72,.26),transparent 48%);pointer-events:none}
+.gift-offer-popup__close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border:1px solid #ffffff38;border-radius:12px;background:#ffffff12;color:#fff;font-size:28px;line-height:1;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.gift-offer-popup__close:hover,.gift-offer-popup__close:focus-visible{background:#ffffff24;border-color:#ffffff66;outline:none}
+.gift-offer-popup__eyebrow{position:relative;margin:0 0 10px;color:#bfef96;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.gift-offer-popup__title{position:relative;margin:0 0 14px;font-size:clamp(28px,4.5vw,38px);line-height:1.08}
+.gift-offer-popup__text{position:relative;margin:0 auto 22px;max-width:340px;color:#e2e6ef;font-size:17px;line-height:1.45}
+.gift-offer-popup__button{position:relative;display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:54px;border:0;border-radius:14px;background:var(--accent);color:#fff;font:700 15px/1.15 "PF Isotext Pro",Arial,sans-serif;text-transform:uppercase;cursor:pointer;padding:16px 22px;box-shadow:0 14px 28px rgba(120,184,72,.28);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+.gift-offer-popup__button:hover,.gift-offer-popup__button:focus-visible{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 16px 32px rgba(120,184,72,.34);outline:none}
+.gift-offer-gift{grid-column:1;justify-self:center;width:min(170px,100%);margin:0 0 6px;opacity:0;transform:scale(.75);transform-origin:center;pointer-events:none}
+.gift-offer-gift img{width:100%;height:auto;filter:drop-shadow(0 14px 26px rgba(0,0,0,.32))}
+.gift-offer-gift.is-visible{animation:gift-offer-appear .9s cubic-bezier(.2,.8,.2,1) forwards,gift-offer-pulse 3.8s ease-in-out .9s infinite}
+
+@keyframes gift-offer-appear{0%{opacity:0;transform:scale(.75)}100%{opacity:1;transform:scale(1)}}
+@keyframes gift-offer-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.055)}}
+
+@media (max-width: 767px){
+  .gift-offer-popup{padding:14px;align-items:center}
+  .gift-offer-popup__dialog{width:100%;max-height:calc(100vh - 28px);border-radius:18px;padding:28px 18px 20px}
+  .gift-offer-popup__text{font-size:16px}
+  .gift-offer-popup__button{min-height:56px;padding-inline:16px;font-size:14px}
+  .gift-offer-gift{grid-column:1/-1;width:min(140px,54vw);margin:2px auto 4px}
+}
+
+@media (max-width: 380px){
+  .gift-offer-popup{padding:10px}
+  .gift-offer-popup__dialog{padding:26px 14px 18px}
+  .gift-offer-popup__title{font-size:26px}
+  .gift-offer-gift{width:min(128px,50vw)}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .gift-offer-popup__button,.gift-offer-popup__close{transition:none}
+  .gift-offer-popup__button:hover,.gift-offer-popup__button:focus-visible{transform:none}
+  .gift-offer-gift{transition:opacity .2s ease,transform .2s ease}
+  .gift-offer-gift.is-visible{opacity:1;transform:scale(1);animation:none}
+}
