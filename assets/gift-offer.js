@@ -252,11 +252,14 @@
     function placeGift(form) {
         var gift = ensureGiftElement();
         var submitButton = form.querySelector('.melke-lead-form__submit, button[type="submit"], input[type="submit"]');
+        var consentBlock = form.querySelector('[data-consent-block]');
         var nameInput = form.querySelector('#leadNameBottom, input[name="name"], input[placeholder*="имя" i]');
         var nameRow = nameInput ? nameInput.closest('.melke-lead-form__row') || nameInput : null;
         var isMobile = mediaQuery ? mediaQuery.matches : window.innerWidth <= 767;
 
-        if (isMobile && submitButton) {
+        if (consentBlock) {
+            form.insertBefore(gift, consentBlock);
+        } else if (isMobile && submitButton) {
             form.insertBefore(gift, submitButton);
         } else if (nameRow) {
             form.insertBefore(gift, nameRow);

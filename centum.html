@@ -154,7 +154,7 @@
             <div class="melke-lead-form__box">
                 <h2 class="melke-lead-form__title">Купить окна Melke от производителя</h2>
                 <p class="melke-lead-form__text">Оставьте контакты и получите расчет стоимости.</p>
-                <form class="melke-lead-form__form" action="send.php" method="post" novalidate>
+                <form class="melke-lead-form__form" data-consent-form-id="centum-bottom-lead-form" action="send.php" method="post" novalidate>
                     <div class="melke-lead-form__row">
                         <label class="melke-lead-form__label" for="leadNameBottom">Ваше имя</label>
                         <input class="melke-lead-form__input" type="text" id="leadNameBottom" name="name" placeholder="Введите имя" autocomplete="name">
@@ -164,6 +164,13 @@
                         <input class="melke-lead-form__input" type="tel" id="leadPhoneBottom" name="phone" placeholder="+7(___) ___-__-__" required autocomplete="tel">
                     </div>
                     <input type="text" name="website" tabindex="-1" autocomplete="off" class="melke-lead-form__trap" aria-hidden="true">
+                    <div class="melke-consent" data-consent-block>
+                        <label class="melke-consent__label" for="personalDataConsent-centum-bottom">
+                            <input class="melke-consent__checkbox" type="checkbox" id="personalDataConsent-centum-bottom" name="personal_data_consent" value="true" required checked aria-describedby="personalDataConsentError-centum-bottom">
+                            <span class="melke-consent__text">Я ознакомлен(а) с <a href="/politika-konfidencialnosti/" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a> и даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a></span>
+                        </label>
+                        <p class="melke-consent__error" id="personalDataConsentError-centum-bottom" data-consent-error aria-live="polite"></p>
+                    </div>
                     <button class="melke-lead-form__submit" type="submit">Оставить заявку</button>
                     <p class="melke-lead-form__status" role="status" aria-live="polite"></p>
                 </form>
@@ -193,7 +200,7 @@
             </ul>
         </div>
     </div>
-    <div class="inner-container melke-footer__bottom">© Melke, 2026. Все права защищены.</div>
+    <div class="inner-container melke-footer__bottom"><span>© Melke, 2026. Все права защищены.</span><span class="melke-footer__legal"><a href="/politika-konfidencialnosti/">Политика конфиденциальности</a><a href="/soglasie-na-obrabotku-personalnyh-dannyh/">Согласие на обработку персональных данных</a></span></div>
 </footer>
 
 <div class="melke-modal" id="lead-modal" aria-hidden="true">
@@ -201,7 +208,7 @@
     <div class="melke-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
         <button type="button" class="melke-modal__close" aria-label="Закрыть" data-modal-close>×</button>
         <h2 class="melke-lead-form__title" id="leadModalTitle">Заказать замер 📏</h2>
-        <form class="melke-lead-form__form" action="send.php" method="post" novalidate>
+        <form class="melke-lead-form__form" data-consent-form-id="centum-modal-lead-form" action="send.php" method="post" novalidate>
             <div class="melke-lead-form__row">
                 <label class="melke-lead-form__label" for="leadNameModal">Ваше имя</label>
                 <input class="melke-lead-form__input" type="text" id="leadNameModal" name="name" placeholder="Введите имя" autocomplete="name">
@@ -211,7 +218,14 @@
                 <input class="melke-lead-form__input" type="tel" id="leadPhoneModal" name="phone" placeholder="+7(___) ___-__-__" required autocomplete="tel">
             </div>
             <input type="text" name="website" tabindex="-1" autocomplete="off" class="melke-lead-form__trap" aria-hidden="true">
-            <button class="melke-lead-form__submit" type="submit">Оставить заявку</button>
+            <div class="melke-consent" data-consent-block>
+                        <label class="melke-consent__label" for="personalDataConsent-centum-modal">
+                            <input class="melke-consent__checkbox" type="checkbox" id="personalDataConsent-centum-modal" name="personal_data_consent" value="true" required checked aria-describedby="personalDataConsentError-centum-modal">
+                            <span class="melke-consent__text">Я ознакомлен(а) с <a href="/politika-konfidencialnosti/" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a> и даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a></span>
+                        </label>
+                        <p class="melke-consent__error" id="personalDataConsentError-centum-modal" data-consent-error aria-live="polite"></p>
+                    </div>
+                    <button class="melke-lead-form__submit" type="submit">Оставить заявку</button>
             <p class="melke-lead-form__status" role="status" aria-live="polite"></p>
         </form>
     </div>
@@ -229,17 +243,54 @@
             return;
         }
 
+        var initialConsentCheckbox = form.querySelector('input[name="personal_data_consent"]');
+        var initialConsentError = form.querySelector('[data-consent-error]');
+        if (initialConsentCheckbox) {
+            initialConsentCheckbox.addEventListener('change', function () {
+                if (initialConsentCheckbox.checked) {
+                    initialConsentCheckbox.setAttribute('aria-invalid', 'false');
+                    if (initialConsentError) {
+                        initialConsentError.textContent = '';
+                    }
+                }
+            });
+        }
+
         form.addEventListener('submit', function (event) {
             event.preventDefault();
 
             statusEl.textContent = '';
             statusEl.classList.remove('melke-lead-form__status--success', 'melke-lead-form__status--error');
 
+            var consentCheckbox = form.querySelector('input[name="personal_data_consent"]');
+            var consentError = form.querySelector('[data-consent-error]');
+            if (consentError) {
+                consentError.textContent = '';
+            }
+            if (consentCheckbox) {
+                consentCheckbox.setAttribute('aria-invalid', 'false');
+            }
+            if (!consentCheckbox || !consentCheckbox.checked) {
+                if (consentError) {
+                    consentError.textContent = 'Для отправки формы необходимо дать согласие на обработку персональных данных';
+                }
+                if (consentCheckbox) {
+                    consentCheckbox.setAttribute('aria-invalid', 'true');
+                    consentCheckbox.focus();
+                }
+                return;
+            }
+
             submitButton.disabled = true;
             var defaultButtonText = submitButton.textContent;
             submitButton.textContent = 'Отправка...';
 
             var formData = new FormData(form);
+            formData.set('personal_data_consent', 'true');
+            formData.set('privacy_policy_version', '2026-06-15');
+            formData.set('consent_timestamp', new Date().toISOString());
+            formData.set('consent_page_url', window.location.href);
+            formData.set('consent_form_id', form.getAttribute('data-consent-form-id') || form.id || 'melke-lead-form');
             if (!formData.get('page')) {
                 formData.append('page', window.location.href);
             }
@@ -264,6 +315,15 @@
                     statusEl.textContent = data.message || 'Спасибо! Заявка отправлена.';
                     statusEl.classList.add('melke-lead-form__status--success');
                     form.reset();
+                    var resetConsentCheckbox = form.querySelector('input[name="personal_data_consent"]');
+                    var resetConsentError = form.querySelector('[data-consent-error]');
+                    if (resetConsentCheckbox) {
+                        resetConsentCheckbox.checked = true;
+                        resetConsentCheckbox.setAttribute('aria-invalid', 'false');
+                    }
+                    if (resetConsentError) {
+                        resetConsentError.textContent = '';
+                    }
                 })
                 .catch(function (error) {
                     statusEl.textContent = error.message || 'Не удалось отправить заявку. Попробуйте позже.';
