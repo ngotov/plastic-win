@@ -14,6 +14,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 const RATE_LIMIT_SECONDS = 20;
 const PHONE_MIN_DIGITS = 10;
 const PHONE_MAX_DIGITS = 15;
+const PRIVACY_POLICY_VERSION = '2026-06-15';
 
 function respond(int $statusCode, bool $success, string $message): void
 {
@@ -86,6 +87,29 @@ if (!isValidPhone($phone)) {
     respond(422, false, 'Проверьте корректность номера телефона.');
 }
 
+$personalDataConsent = (string) ($_POST['personal_data_consent'] ?? '');
+if ($personalDataConsent !== 'true' && $personalDataConsent !== '1' && $personalDataConsent !== 'on') {
+    respond(422, false, 'Для отправки формы необходимо дать согласие на обработку персональных данных');
+}
+
+$privacyPolicyVersion = trim((string) ($_POST['privacy_policy_version'] ?? PRIVACY_POLICY_VERSION));
+$consentTimestamp = trim((string) ($_POST['consent_timestamp'] ?? ''));
+$consentPageUrl = trim((string) ($_POST['consent_page_url'] ?? ''));
+$consentFormId = trim((string) ($_POST['consent_form_id'] ?? ''));
+
+if ($consentTimestamp === '') {
+    $consentTimestamp = date(DATE_ATOM);
+}
+if ($privacyPolicyVersion === '') {
+    $privacyPolicyVersion = PRIVACY_POLICY_VERSION;
+}
+if ($consentPageUrl === '') {
+    $consentPageUrl = trim((string) ($_SERVER['HTTP_REFERER'] ?? 'Не определено'));
+}
+if ($consentFormId === '') {
+    $consentFormId = 'melke-lead-form';
+}
+
 $page = trim((string) ($_POST['page'] ?? ''));
 if ($page === '') {
     $page = trim((string) ($_SERVER['HTTP_REFERER'] ?? 'Не определено'));
@@ -101,6 +125,11 @@ $body = "Новая заявка с сайта " . SMTP_SITE_DOMAIN . "\n"
     . "Имя: " . ($name !== '' ? $name : 'Не указано') . "\n"
     . "Телефон: {$phone}\n"
     . "Страница: {$page}\n"
+    . "Согласие на обработку персональных данных: да\n"
+    . "Версия политики: {$privacyPolicyVersion}\n"
+    . "Время согласия (ISO): {$consentTimestamp}\n"
+    . "URL страницы согласия: {$consentPageUrl}\n"
+    . "ID формы согласия: {$consentFormId}\n"
     . "Дата и время: {$dateTime}\n"
     . "IP: {$ip}\n"
     . "User-Agent: {$userAgent}\n";
